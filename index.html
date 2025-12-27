@@ -1,75 +1,596 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Swathi Subramanyam Pabbathi | AI/ML Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Naresh K | AI/ML Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      line-height: 1.6;
+    :root{
+      --bg:#07070b;
+      --panel:#0d0e14;
+      --panel2:#0b0c12;
+      --text:#e9e9f2;
+      --muted:#a9abbd;
+      --border:rgba(255,255,255,.10);
+      --purple:#6d28ff;
+      --purple2:#8b5cf6;
+      --link:#a78bfa;
+      --shadow: 0 30px 80px rgba(0,0,0,.55);
+      --radius:18px;
     }
-    h1, h2 {
-      color: #222;
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1100px 600px at 15% 10%, rgba(109,40,255,.35), transparent 60%),
+        radial-gradient(900px 500px at 85% 35%, rgba(139,92,246,.22), transparent 62%),
+        radial-gradient(700px 420px at 55% 85%, rgba(109,40,255,.16), transparent 65%),
+        var(--bg);
+      overflow-x:hidden;
     }
-    .project {
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 6px;
+
+    a{color:var(--link); text-decoration:none}
+    a:hover{ text-decoration:underline; }
+
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 64px;}
+
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; margin-bottom:20px;
     }
-    .links a {
-      margin-right: 10px;
-      text-decoration: none;
-      color: #0066cc;
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px;}
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, var(--purple), #3b82f6);
+      box-shadow: 0 10px 25px rgba(109,40,255,.35);
+      position:relative;
+    }
+    .logo:after{
+      content:""; position:absolute; inset:9px;
+      border-radius:8px; background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .navlinks{display:flex; gap:18px; flex-wrap:wrap; align-items:center}
+    .navlinks a{color:var(--muted); font-weight:600; font-size:14px}
+    .navlinks a:hover{color:var(--text); text-decoration:none}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:999px;
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      color:white; font-weight:700; font-size:14px;
+      box-shadow: 0 14px 30px rgba(109,40,255,.35);
+      border: 1px solid rgba(255,255,255,.14);
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .cta:hover{filter:brightness(1.05); text-decoration:none}
+
+    /* Hero card */
+    .heroCard{
+      position:relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      padding:22px;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(520px 260px at 18% 15%, rgba(109,40,255,.35), transparent 60%),
+        radial-gradient(520px 260px at 88% 55%, rgba(139,92,246,.22), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .hero{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:center;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; }
+    }
+
+    .kicker{color:var(--link); font-weight:800; font-size:13px; letter-spacing:.6px; text-transform:uppercase}
+    h1{
+      margin:8px 0 10px;
+      font-size:40px;
+      line-height:1.06;
+      letter-spacing:-.6px;
+    }
+    h1 .accent{color:var(--purple2)}
+    .sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      max-width:62ch;
+      font-size:15px;
+    }
+
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 12px; border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(13,14,20,.55);
+      color:var(--text);
+      font-weight:700; font-size:14px;
+      text-decoration:none;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover{background: rgba(255,255,255,.07); text-decoration:none}
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .stats{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .stat{
+      min-width:160px;
+      padding:12px 12px;
+      border-radius:14px;
+      border: 1px solid var(--border);
+      background: rgba(10,11,16,.55);
+      backdrop-filter: blur(10px);
+    }
+    .stat .num{font-weight:900; font-size:20px}
+    .stat .lbl{color:var(--muted); font-size:12px; margin-top:4px}
+
+    /* Right hero visual (simple themed circle like screenshot) */
+    .visual{
+      position:relative;
+      height:320px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(160px 160px at 50% 45%, rgba(109,40,255,.26), transparent 60%),
+        radial-gradient(220px 220px at 55% 55%, rgba(139,92,246,.18), transparent 62%),
+        rgba(10,11,16,.55);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+    .ring{
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+    }
+    .ring:before{
+      content:"";
+      width:220px; height:220px; border-radius:999px;
+      border: 2px solid rgba(167,139,250,.28);
+      box-shadow: 0 0 0 10px rgba(109,40,255,.08);
+    }
+    .avatar{
+      position:absolute; left:50%; top:50%;
+      transform: translate(-50%, -50%);
+      width:160px; height:160px; border-radius:999px;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.18), transparent 35%),
+        linear-gradient(135deg, rgba(109,40,255,.55), rgba(0,0,0,.35));
+      border: 1px solid rgba(255,255,255,.18);
+      display:grid; place-items:center;
+      font-weight:900;
+      letter-spacing:.5px;
+      color: rgba(255,255,255,.92);
+    }
+    .bubble{
+      position:absolute;
+      right:16px; bottom:18px;
+      max-width:260px;
+      padding:10px 12px;
+      border-radius:14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(13,14,20,.70);
+      color: var(--text);
+      font-size:13px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+    }
+    .bubble b{color:var(--link)}
+    .chip{
+      position:absolute; width:34px; height:34px; border-radius:999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(13,14,20,.75);
+      display:grid; place-items:center;
+      color: var(--link);
+      font-weight:900;
+    }
+    .chip.c1{left:18px; top:24px}
+    .chip.c2{right:24px; top:62px}
+    .chip.c3{left:44px; bottom:58px}
+
+    /* Projects section */
+    .section{margin-top:26px}
+    .section h2{
+      margin:0 0 12px;
+      font-size:18px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+    .hint{color:var(--muted); font-size:13px; margin-top:-6px; margin-bottom:12px}
+
+    .tableWrap{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: rgba(10,11,16,.55);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    table{
+      width:100%;
+      border-collapse: collapse;
+    }
+    thead th{
+      text-align:left;
+      font-size:12px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color: rgba(233,233,242,.82);
+      background: rgba(0,0,0,.25);
+      border-bottom: 1px solid var(--border);
+      padding:12px 14px;
+    }
+    tbody td{
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding:12px 14px;
+      color: rgba(233,233,242,.90);
+      vertical-align:top;
+      font-size:14px;
+    }
+    tbody tr:hover td{ background: rgba(255,255,255,.04); }
+    tbody tr:last-child td{border-bottom:none}
+
+    /* Make each cell clickable (anchor fills entire cell) */
+    td > a.cellLink{
+      display:block;
+      color: rgba(233,233,242,.92);
+      text-decoration:none;
+      border-radius:10px;
+      padding:10px 10px;       /* inner padding for clickable area */
+      margin:-6px -8px;        /* extend closer to cell edges */
+      outline: none;
+    }
+    td > a.cellLink:hover{
+      background: rgba(109,40,255,.12);
+      text-decoration:none;
+    }
+    .pill{
+      display:inline-block;
+      padding:4px 8px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      font-size:12px;
+      margin-right:6px;
+      margin-top:6px;
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .linksRow a{ color: var(--link); font-weight:700 }
+    .muted{color:var(--muted)}
+
+    /* Footer */
+    footer{
+      margin-top:24px;
+      color: var(--muted);
+      font-size:13px;
+      text-align:center;
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
 
-  <h1>Swathi Subramanyam Pabbathi</h1>
-  <p><strong>AI/ML Engineer</strong> | Credit Risk | GenAI | Time Series</p>
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>Naresh K <span style="color:var(--muted); font-weight:700;">· Portfolio</span></div>
+      </div>
 
-  <h2>Projects</h2>
-
-  <div class="project">
-    <h3>Loan Document Validation System (RAG)</h3>
-    <p>
-      Built a retrieval-augmented generation system to automate underwriting document validation using
-      LangChain, GPT-4, and Pinecone.
-    </p>
-    <p><strong>Tech:</strong> Python, LangChain, OpenAI, Pinecone, AWS</p>
-    <div class="links">
-      <a href="https://github.com/yourrepo">GitHub</a>
-      <a href="https://demo-link">Demo</a>
+      <div class="navlinks">
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="assets/NareshK_Resume.pdf" target="_blank" rel="noreferrer">Download Resume</a>
+      </div>
     </div>
+
+    <!-- HERO -->
+    <section class="heroCard">
+      <div class="hero">
+        <div>
+          <div class="kicker">AI / ML Engineer</div>
+          <h1>
+            Building production-grade <span class="accent">ML</span> & <span class="accent">GenAI</span><br/>
+            systems for real-world impact.
+          </h1>
+          <p class="sub">
+            Credit Risk · Predictive Modeling · Forecasting · Retrieval-Augmented Generation (RAG) ·
+            Computer Vision · MLOps · AWS
+          </p>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#projects">View Projects</a>
+            <a class="btn" href="https://github.com/REPLACE_WITH_YOUR_GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://linkedin.com/in/REPLACE_WITH_YOUR_LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="num">14+ yrs</div>
+              <div class="lbl">Software Engineering Experience</div>
+            </div>
+            <div class="stat">
+              <div class="num">GenAI · ML</div>
+              <div class="lbl">RAG, LLMs, Predictive Modeling</div>
+            </div>
+            <div class="stat">
+              <div class="num">AWS</div>
+              <div class="lbl">EC2 · S3 · ECS · CI/CD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Visual panel">
+          <div class="ring"></div>
+          <div class="avatar">NK</div>
+          <div class="chip c1">⧉</div>
+          <div class="chip c2">⚡</div>
+          <div class="chip c3">◎</div>
+          <div class="bubble">
+            <b>Tip:</b> Make each project cell clickable → recruiters can jump straight to your GitHub, demo, or report.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS (TABLE WITH CLICKABLE CELLS) -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="hint">Each cell is a hyperlink. Replace the URLs with your real GitHub/demo/report links.</div>
+
+      <div class="tableWrap">
+        <table role="table" aria-label="Projects table">
+          <thead>
+            <tr>
+              <th style="width:30%;">Project</th>
+              <th style="width:18%;">Domain</th>
+              <th style="width:32%;">Tech Stack</th>
+              <th style="width:20%;">Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/intercountnet" target="_blank" rel="noreferrer">
+                  InterCountNet – Intersection Vehicle Counting Network
+                  <div class="muted" style="margin-top:6px; font-size:13px;">
+                    Detection · Tracking · Counting (end-to-end)
+                  </div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/intercountnet" target="_blank" rel="noreferrer">
+                  Computer Vision
+                  <div class="pill">Object Detection</div><div class="pill">Tracking</div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/intercountnet" target="_blank" rel="noreferrer">
+                  <div class="pill">YOLOv8</div><div class="pill">PyTorch</div><div class="pill">OpenCV</div>
+                  <div class="pill">Streamlit</div><div class="pill">AWS</div>
+                </a>
+              </td>
+              <td class="linksRow">
+                <a class="cellLink" href="https://REPLACE/demo" target="_blank" rel="noreferrer">
+                  GitHub · Demo · Report
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/loan-doc-rag" target="_blank" rel="noreferrer">
+                  Loan Document Validation System (RAG)
+                  <div class="muted" style="margin-top:6px; font-size:13px;">
+                    Retrieval + structured extraction for underwriting
+                  </div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/loan-doc-rag" target="_blank" rel="noreferrer">
+                  GenAI / NLP
+                  <div class="pill">RAG</div><div class="pill">LLMs</div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/loan-doc-rag" target="_blank" rel="noreferrer">
+                  <div class="pill">LangChain</div><div class="pill">Vector DB</div><div class="pill">Python</div>
+                  <div class="pill">Prompting</div>
+                </a>
+              </td>
+              <td class="linksRow">
+                <a class="cellLink" href="https://REPLACE/architecture" target="_blank" rel="noreferrer">
+                  GitHub · Demo · Diagram
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/multi-agent-finance" target="_blank" rel="noreferrer">
+                  Multi-Agent Financial Analysis System
+                  <div class="muted" style="margin-top:6px; font-size:13px;">
+                    Planner/Router/Tools/Memory with chat UX
+                  </div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/multi-agent-finance" target="_blank" rel="noreferrer">
+                  Agentic AI
+                  <div class="pill">LangGraph</div><div class="pill">Tools</div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/multi-agent-finance" target="_blank" rel="noreferrer">
+                  <div class="pill">LangGraph</div><div class="pill">OpenAI SDK</div><div class="pill">Streamlit</div>
+                  <div class="pill">APIs</div>
+                </a>
+              </td>
+              <td class="linksRow">
+                <a class="cellLink" href="https://REPLACE/notebook" target="_blank" rel="noreferrer">
+                  GitHub · Demo · Notebook
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/pm25-forecasting" target="_blank" rel="noreferrer">
+                  AQMAS – PM2.5 Forecasting (LSTM)
+                  <div class="muted" style="margin-top:6px; font-size:13px;">
+                    Multi-step forecasting with feature engineering
+                  </div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/pm25-forecasting" target="_blank" rel="noreferrer">
+                  Time Series
+                  <div class="pill">Forecasting</div><div class="pill">LSTM</div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/pm25-forecasting" target="_blank" rel="noreferrer">
+                  <div class="pill">TensorFlow/PyTorch</div><div class="pill">Pandas</div><div class="pill">Matplotlib</div>
+                </a>
+              </td>
+              <td class="linksRow">
+                <a class="cellLink" href="https://REPLACE/dashboard" target="_blank" rel="noreferrer">
+                  GitHub · Report · Dashboard
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/midi-composer" target="_blank" rel="noreferrer">
+                  MIDI Composer Classification (LSTM/CNN)
+                  <div class="muted" style="margin-top:6px; font-size:13px;">
+                    MIDI feature extraction + imbalance handling
+                  </div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/midi-composer" target="_blank" rel="noreferrer">
+                  Deep Learning
+                  <div class="pill">Sequence</div><div class="pill">CNN</div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/midi-composer" target="_blank" rel="noreferrer">
+                  <div class="pill">PyTorch</div><div class="pill">LSTM</div><div class="pill">CNN</div>
+                  <div class="pill">Feature Eng</div>
+                </a>
+              </td>
+              <td class="linksRow">
+                <a class="cellLink" href="https://REPLACE/report" target="_blank" rel="noreferrer">
+                  GitHub · Report
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/group-emotion" target="_blank" rel="noreferrer">
+                  Group Emotion Detection (Webcam)
+                  <div class="muted" style="margin-top:6px; font-size:13px;">
+                    Real-time face detection + emotion classification
+                  </div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/group-emotion" target="_blank" rel="noreferrer">
+                  Computer Vision
+                  <div class="pill">Realtime</div><div class="pill">Faces</div>
+                </a>
+              </td>
+              <td>
+                <a class="cellLink" href="https://github.com/REPLACE/group-emotion" target="_blank" rel="noreferrer">
+                  <div class="pill">OpenCV</div><div class="pill">DL Model</div><div class="pill">Python</div>
+                </a>
+              </td>
+              <td class="linksRow">
+                <a class="cellLink" href="https://REPLACE/demo" target="_blank" rel="noreferrer">
+                  GitHub · Demo
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CERTS -->
+    <section id="certs" class="section">
+      <h2>Certifications</h2>
+      <div class="tableWrap">
+        <table role="table" aria-label="Certifications table">
+          <thead>
+            <tr>
+              <th style="width:45%;">Certification</th>
+              <th style="width:25%;">Issuer</th>
+              <th style="width:30%;">Credential Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="cellLink" href="https://REPLACE/credential" target="_blank" rel="noreferrer">REPLACE – Certification Name</a></td>
+              <td><a class="cellLink" href="https://REPLACE/issuer" target="_blank" rel="noreferrer">REPLACE – Issuer</a></td>
+              <td class="linksRow"><a class="cellLink" href="https://REPLACE/credential" target="_blank" rel="noreferrer">View Credential</a></td>
+            </tr>
+            <tr>
+              <td><a class="cellLink" href="https://REPLACE/credential" target="_blank" rel="noreferrer">REPLACE – Certification Name</a></td>
+              <td><a class="cellLink" href="https://REPLACE/issuer" target="_blank" rel="noreferrer">REPLACE – Issuer</a></td>
+              <td class="linksRow"><a class="cellLink" href="https://REPLACE/credential" target="_blank" rel="noreferrer">View Credential</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="heroCard" style="padding:16px; margin-top:10px;">
+        <div style="position:relative;">
+          <div class="muted" style="margin-bottom:8px;">Best way to reach me:</div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btnPrimary" href="mailto:REPLACE_WITH_YOUR_EMAIL">Email</a>
+            <a class="btn" href="https://linkedin.com/in/REPLACE_WITH_YOUR_LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="https://github.com/REPLACE_WITH_YOUR_GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> Naresh K · Dark-theme portfolio on GitHub Pages
+    </footer>
   </div>
 
-  <div class="project">
-    <h3>PM2.5 Time Series Forecasting (LSTM)</h3>
-    <p>
-      Developed multi-step LSTM models for air quality forecasting using historical meteorological data.
-    </p>
-    <p><strong>Tech:</strong> PyTorch, LSTM, Pandas, Matplotlib</p>
-    <div class="links">
-      <a href="https://github.com/yourrepo">GitHub</a>
-    </div>
-  </div>
-
-  <h2>Certifications</h2>
-  <ul>
-    <li>Deep Learning Specialization – Coursera</li>
-    <li>AWS Machine Learning Foundations</li>
-  </ul>
-
-  <h2>Contact</h2>
-  <p>
-    <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> |
-    <a href="https://github.com/yourusername">GitHub</a>
-  </p>
-
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
