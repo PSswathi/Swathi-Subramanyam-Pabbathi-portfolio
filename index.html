@@ -70,6 +70,16 @@
     }
     .cta:hover{filter:brightness(1.05); text-decoration:none}
 
+    /* Experience expand area */
+    .expDetailsCell { padding: 0; }
+    .expDetailsBox{
+      padding: 14px 14px;
+      background: rgba(0,0,0,.18);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .expList{ margin: 8px 0 0; padding-left: 18px; }
+    .expList li{ margin-bottom: 6px; }
+
     /* Hero card */
     .heroCard{
       position:relative;
@@ -982,6 +992,12 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+    function toggleExp(e, id){
+      e.preventDefault();
+      const row = document.getElementById(id);
+      if (!row) return;
+      row.style.display = (row.style.display === "none" || row.style.display === "") ? "table-row" : "none";
+    }
   </script>
 </body>
 </html>
